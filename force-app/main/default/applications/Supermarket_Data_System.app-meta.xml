@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>スーパーマーケット データ管理システム - SVが店舗パフォーマンスを管理・モニタリングするためのアプリケーション</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Supermarket Data System</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>Store__c</tabs>
+    <tabs>Department__c</tabs>
+    <tabs>Product__c</tabs>
+    <tabs>Weekly_Department_PL__c</tabs>
+    <tabs>Weekly_Product_Sales__c</tabs>
+    <tabs>Store_Review__c</tabs>
+    <tabs>Review_Comment__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>
