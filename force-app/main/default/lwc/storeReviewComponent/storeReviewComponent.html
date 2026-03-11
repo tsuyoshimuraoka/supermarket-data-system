@@ -1,0 +1,119 @@
+<template>
+    <lightning-card title="店舗レビュー" icon-name="standard:feedback">
+        <div class="slds-m-around_medium">
+            <!-- Review Details -->
+            <template if:true={reviewId}>
+                <lightning-record-view-form record-id={reviewId} object-api-name="Store_Review__c">
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-output-field field-name="Store__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-output-field field-name="Review_Date__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-output-field field-name="Supervisor__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-output-field field-name="Review_Status__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-output-field field-name="Summary__c"></lightning-output-field>
+                        </div>
+                    </div>
+                </lightning-record-view-form>
+
+                <!-- Comments Section -->
+                <div class="slds-m-top_large">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">コメント</h3>
+
+                    <!-- Comments List -->
+                    <template if:true={hasComments}>
+                        <div class="comments-container">
+                            <template for:each={comments} for:item="comment">
+                                <div key={comment.id} class="comment-card slds-box slds-m-bottom_small">
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                            <lightning-avatar
+                                                src={comment.commenterPhotoUrl}
+                                                fallback-icon-name="standard:user"
+                                                size="medium">
+                                            </lightning-avatar>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <div class="slds-grid slds-grid_align-spread">
+                                                <div>
+                                                    <p class="slds-text-heading_small">{comment.commenterName}</p>
+                                                    <p class="slds-text-color_weak slds-text-body_small">
+                                                        <lightning-formatted-date-time
+                                                            value={comment.commentDate}
+                                                            year="numeric"
+                                                            month="short"
+                                                            day="2-digit"
+                                                            hour="2-digit"
+                                                            minute="2-digit">
+                                                        </lightning-formatted-date-time>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <lightning-badge label={comment.commentType}></lightning-badge>
+                                                </div>
+                                            </div>
+                                            <div class="slds-m-top_small">
+                                                <lightning-formatted-text value={comment.comment}></lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- No Comments Message -->
+                    <template if:false={hasComments}>
+                        <p class="slds-text-color_weak">コメントはまだありません</p>
+                    </template>
+
+                    <!-- New Comment Form -->
+                    <div class="slds-m-top_medium">
+                        <lightning-textarea
+                            label="新しいコメント"
+                            value={newComment}
+                            onchange={handleCommentChange}
+                            placeholder="コメントを入力...">
+                        </lightning-textarea>
+
+                        <lightning-combobox
+                            label="コメント種別"
+                            value={commentType}
+                            placeholder="選択してください"
+                            options={commentTypeOptions}
+                            onchange={handleTypeChange}
+                            class="slds-m-top_small">
+                        </lightning-combobox>
+
+                        <div class="slds-m-top_small">
+                            <lightning-button
+                                variant="brand"
+                                label="コメント追加"
+                                onclick={handleAddComment}
+                                disabled={isAddingComment}>
+                            </lightning-button>
+                            <lightning-button
+                                variant="neutral"
+                                label="更新"
+                                onclick={handleRefresh}
+                                class="slds-m-left_small">
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- No Review Selected -->
+            <template if:false={reviewId}>
+                <p class="slds-text-color_weak">レビューを選択してください</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

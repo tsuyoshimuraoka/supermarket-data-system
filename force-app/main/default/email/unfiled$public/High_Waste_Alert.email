@@ -1,0 +1,14 @@
+廃棄率アラート通知
+
+店舗: {!Weekly_Department_PL__c.Store__c}
+部門: {!Weekly_Department_PL__c.Department__c}
+日付: {!Weekly_Department_PL__c.Date__c}
+
+廃棄率が閾値を超えました。
+
+廃棄率: {!Weekly_Department_PL__c.Waste_Rate__c}%
+廃棄金額: ¥{!Weekly_Department_PL__c.Waste_Amount__c}
+
+早急な対応をお願いします。
+
+詳細はSalesforceでご確認ください。

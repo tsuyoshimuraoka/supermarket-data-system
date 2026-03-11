@@ -1,0 +1,68 @@
+<template>
+    <lightning-card title="CSV データインポート" icon-name="standard:upload">
+        <div class="slds-m-around_medium">
+            <!-- Object Type Selection -->
+            <lightning-combobox
+                name="objectType"
+                label="インポート種別"
+                value={selectedObjectType}
+                placeholder="選択してください"
+                options={objectTypeOptions}
+                onchange={handleObjectTypeChange}
+                required>
+            </lightning-combobox>
+
+            <!-- File Input -->
+            <div class="slds-m-top_medium">
+                <lightning-input
+                    type="file"
+                    label="CSVファイル選択"
+                    accept=".csv"
+                    onchange={handleFileChange}
+                    required>
+                </lightning-input>
+            </div>
+
+            <!-- Upload Button -->
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    variant="brand"
+                    label="アップロード"
+                    onclick={handleUpload}
+                    disabled={isUploading}
+                    icon-name="utility:upload">
+                </lightning-button>
+            </div>
+
+            <!-- Progress Indicator -->
+            <template if:true={isUploading}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner alternative-text="アップロード中..." size="medium"></lightning-spinner>
+                    <p class="slds-text-align_center slds-m-top_small">アップロード中...</p>
+                </div>
+            </template>
+
+            <!-- Success Message -->
+            <template if:true={showSuccess}>
+                <div class="slds-m-top_medium">
+                    <lightning-formatted-text value={successMessage} class="slds-text-color_success"></lightning-formatted-text>
+                    <div class="slds-m-top_small">
+                        <p>ファイル名: {importResult.fileName}</p>
+                        <p>総レコード数: {importResult.recordCount}</p>
+                        <p>成功: {importResult.successCount}</p>
+                        <template if:true={hasErrors}>
+                            <p class="slds-text-color_error">エラー: {importResult.errorCount}</p>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Error Message -->
+            <template if:true={showError}>
+                <div class="slds-m-top_medium">
+                    <lightning-formatted-text value={errorMessage} class="slds-text-color_error"></lightning-formatted-text>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

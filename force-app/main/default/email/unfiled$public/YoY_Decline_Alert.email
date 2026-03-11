@@ -1,0 +1,14 @@
+前年比低下アラート通知
+
+店舗: {!Weekly_Department_PL__c.Store__c}
+部門: {!Weekly_Department_PL__c.Department__c}
+日付: {!Weekly_Department_PL__c.Date__c}
+
+前年比が大幅に低下しました。
+
+前年比: {!Weekly_Department_PL__c.YoY_Ratio__c}%
+売上高: ¥{!Weekly_Department_PL__c.Sales_Amount__c}
+
+売上回復のための施策をご検討ください。
+
+詳細はSalesforceでご確認ください。

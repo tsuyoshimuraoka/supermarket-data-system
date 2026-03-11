@@ -1,0 +1,14 @@
+低利益率アラート通知
+
+店舗: {!Weekly_Department_PL__c.Store__c}
+部門: {!Weekly_Department_PL__c.Department__c}
+日付: {!Weekly_Department_PL__c.Date__c}
+
+荒利率が最低基準を下回りました。
+
+荒利率: {!Weekly_Department_PL__c.Gross_Profit_Margin__c}%
+荒利高: ¥{!Weekly_Department_PL__c.Gross_Profit__c}
+
+収益性改善のための対策をお願いします。
+
+詳細はSalesforceでご確認ください。

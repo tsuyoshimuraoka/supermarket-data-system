@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert notification for low profit margin - 低利益率アラート通知</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Low Margin Alert</name>
+    <style>none</style>
+    <subject>【アラート】低利益率 - {!Weekly_Department_PL__c.Store__c}</subject>
+    <textOnly>true</textOnly>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

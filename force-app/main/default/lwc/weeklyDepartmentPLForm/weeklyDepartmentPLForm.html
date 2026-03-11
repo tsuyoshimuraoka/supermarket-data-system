@@ -1,0 +1,95 @@
+<template>
+    <lightning-card title="週間部門別PL 入力" icon-name="standard:record">
+        <div class="slds-m-around_medium">
+            <lightning-record-edit-form
+                object-api-name="Weekly_Department_PL__c"
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+
+                <!-- 基本情報 -->
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="Store__c" required></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="Department__c" required></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="Date__c" required></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="Week__c"></lightning-input-field>
+                    </div>
+                </div>
+
+                <!-- 売上データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">売上データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Sales_Amount__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="YoY_Ratio__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 利益データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">利益データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Gross_Profit__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Gross_Profit_Margin__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ロス・廃棄データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">ロス・廃棄データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Waste_Rate__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Loss_Rate__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Discount_Rate__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 在庫データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">在庫データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Inventory_Days__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ボタン -->
+                <div class="slds-m-top_large">
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        label="保存"
+                        class="slds-m-right_small">
+                    </lightning-button>
+                    <lightning-button
+                        variant="neutral"
+                        label="キャンセル"
+                        onclick={handleCancel}>
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>

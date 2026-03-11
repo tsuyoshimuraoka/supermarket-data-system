@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert notification for YoY decline - 前年比低下アラート通知</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>YoY Decline Alert</name>
+    <style>none</style>
+    <subject>【アラート】前年比低下 - {!Weekly_Department_PL__c.Store__c}</subject>
+    <textOnly>true</textOnly>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

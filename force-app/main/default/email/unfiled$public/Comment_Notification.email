@@ -1,0 +1,11 @@
+店舗レビュー コメント通知
+
+店舗レビューに新しいコメントが追加されました。
+
+店舗: {!Store_Review__c.Store__c}
+レビュー日: {!Store_Review__c.Review_Date__c}
+担当SV: {!Store_Review__c.Supervisor__c}
+
+コメントの詳細を確認し、必要に応じてご対応ください。
+
+Salesforceにログインして詳細をご確認ください。

@@ -1,0 +1,88 @@
+<template>
+    <lightning-card title="週間単品売上 入力" icon-name="standard:product">
+        <div class="slds-m-around_medium">
+            <lightning-record-edit-form
+                object-api-name="Weekly_Product_Sales__c"
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+
+                <!-- 基本情報 -->
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <lightning-input-field field-name="Store__c" required></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <lightning-input-field field-name="Product__c" required></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <lightning-input-field field-name="Date__c" required></lightning-input-field>
+                    </div>
+                </div>
+
+                <!-- 売上データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">売上データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Quantity__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Sales_Amount__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Customer_Count__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 廃棄・値引データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">廃棄・値引データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Discount_Quantity__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Waste_Quantity__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Loss_Rate__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 前年データ -->
+                <div class="slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">前年データ</h3>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Prior_Year_Quantity__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="Prior_Year_Amount__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-input-field field-name="YoY_Ratio__c"></lightning-input-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ボタン -->
+                <div class="slds-m-top_large">
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        label="保存"
+                        class="slds-m-right_small">
+                    </lightning-button>
+                    <lightning-button
+                        variant="neutral"
+                        label="キャンセル"
+                        onclick={handleCancel}>
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>
