@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>商品</label>
+    <referenceTo>Product__c</referenceTo>
+    <relationshipLabel>週間単品売上</relationshipLabel>
+    <relationshipName>Weekly_Product_Sales</relationshipName>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+    <deleteConstraint>Restrict</deleteConstraint>
+</CustomField>

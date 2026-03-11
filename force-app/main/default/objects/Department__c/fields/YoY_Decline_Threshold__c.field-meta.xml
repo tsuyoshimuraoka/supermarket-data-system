@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YoY_Decline_Threshold__c</fullName>
+    <defaultValue>-10</defaultValue>
+    <label>前年比閾値</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+    <inlineHelpText>デフォルト: -10%</inlineHelpText>
+</CustomField>
