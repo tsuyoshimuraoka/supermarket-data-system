@@ -16,7 +16,7 @@ public with sharing class CommentService {
     public static Id createComment(Id reviewId, String commentText, String commentType, Id parentCommentId) {
         try {
             if (reviewId == null || String.isBlank(commentText)) {
-                throw new IllegalArgumentException('Review ID and comment text are required');
+                throw new AuraHandledException('コメントの作成に失敗しました: Review ID and comment text are required');
             }
 
             Review_Comment__c comment = new Review_Comment__c(
@@ -25,13 +25,16 @@ public with sharing class CommentService {
                 Comment_Type__c = commentType,
                 Parent_Comment__c = parentCommentId,
                 Comment_Date__c = System.now(),
-                Commenter__c = UserInfo.getUserId()
+                Commenter__c = UserInfo.getUserId()  // Set programmatically
             );
 
             insert comment;
             return comment.Id;
 
         } catch (Exception e) {
+            if (e instanceof AuraHandledException) {
+                throw e;
+            }
             throw new AuraHandledException('コメントの作成に失敗しました: ' + e.getMessage());
         }
     }
@@ -45,13 +48,14 @@ public with sharing class CommentService {
     public static List<CommentWrapper> getCommentsForReview(Id reviewId) {
         try {
             if (reviewId == null) {
-                throw new IllegalArgumentException('Review ID is required');
+                throw new AuraHandledException('コメントの取得に失敗しました: Review ID is required');
             }
 
             // コメント取得（コメント者情報含む）
             List<Review_Comment__c> comments = [
                 SELECT Id, Comment__c, Comment_Type__c, Comment_Date__c,
-                       Parent_Comment__c, Commenter__r.Name, Commenter__r.SmallPhotoUrl
+                       Parent_Comment__c, 
+                       Commenter__c, Commenter__r.Name, Commenter__r.SmallPhotoUrl
                 FROM Review_Comment__c
                 WHERE Store_Review__c = :reviewId
                 ORDER BY Comment_Date__c ASC
@@ -66,6 +70,9 @@ public with sharing class CommentService {
             return wrappers;
 
         } catch (Exception e) {
+            if (e instanceof AuraHandledException) {
+                throw e;
+            }
             throw new AuraHandledException('コメントの取得に失敗しました: ' + e.getMessage());
         }
     }
@@ -79,7 +86,7 @@ public with sharing class CommentService {
     public static void updateReviewStatus(Id reviewId, String newStatus) {
         try {
             if (reviewId == null || String.isBlank(newStatus)) {
-                throw new IllegalArgumentException('Review ID and status are required');
+                throw new AuraHandledException('ステータス更新に失敗しました: Review ID and status are required');
             }
 
             Store_Review__c review = [SELECT Id, Review_Status__c FROM Store_Review__c WHERE Id = :reviewId LIMIT 1];
@@ -87,6 +94,9 @@ public with sharing class CommentService {
             update review;
 
         } catch (Exception e) {
+            if (e instanceof AuraHandledException) {
+                throw e;
+            }
             throw new AuraHandledException('ステータス更新に失敗しました: ' + e.getMessage());
         }
     }
@@ -109,8 +119,8 @@ public with sharing class CommentService {
             this.commentType = comment.Comment_Type__c;
             this.commentDate = comment.Comment_Date__c;
             this.parentCommentId = comment.Parent_Comment__c;
-            this.commenterName = comment.Commenter__r.Name;
-            this.commenterPhotoUrl = comment.Commenter__r.SmallPhotoUrl;
+            this.commenterName = comment.Commenter__r != null ? comment.Commenter__r.Name : '';
+            this.commenterPhotoUrl = comment.Commenter__r != null ? comment.Commenter__r.SmallPhotoUrl : '';
         }
     }
 }

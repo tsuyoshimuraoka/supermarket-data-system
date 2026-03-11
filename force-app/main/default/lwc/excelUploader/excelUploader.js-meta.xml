@@ -7,9 +7,4 @@
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
     </targets>
-    <targetConfigs>
-        <targetConfig targets="lightning__AppPage,lightning__HomePage,lightning__RecordPage">
-            <property name="title" type="String" default="CSV データインポート" label="Title"/>
-        </targetConfig>
-    </targetConfigs>
 </LightningComponentBundle>

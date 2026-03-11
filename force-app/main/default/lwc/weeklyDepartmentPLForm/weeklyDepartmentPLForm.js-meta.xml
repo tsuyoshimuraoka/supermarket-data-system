@@ -7,9 +7,4 @@
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
     </targets>
-    <targetConfigs>
-        <targetConfig targets="lightning__AppPage,lightning__HomePage,lightning__RecordPage">
-            <property name="title" type="String" default="週間部門別PL 入力" label="Title"/>
-        </targetConfig>
-    </targetConfigs>
 </LightningComponentBundle>

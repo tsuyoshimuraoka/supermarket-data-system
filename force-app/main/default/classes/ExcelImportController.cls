@@ -24,7 +24,9 @@ public with sharing class ExcelImportController {
 
             // CSV行を分割
             List<String> rows = csvString.split('\n');
-            if (rows.isEmpty()) {
+            
+            // 空ファイルまたはヘッダーのみチェック
+            if (rows.isEmpty() || String.isBlank(csvString.trim())) {
                 result.success = false;
                 result.errorMessage = 'CSVファイルが空です';
                 return result;

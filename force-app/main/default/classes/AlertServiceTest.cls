@@ -44,12 +44,19 @@ private class AlertServiceTest {
             Store__c = store.Id,
             Department__c = dept.Id,
             Date__c = Date.today(),
-            Waste_Rate__c = 10.0  // 閾値5%を超える
+            Waste_Rate__c = 10.0
         );
         insert pl;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Department_PL__c>{pl});
+        List<Weekly_Department_PL__c> plList = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plList);
+        update plList;
         Test.stopTest();
 
         pl = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Department_PL__c WHERE Id = :pl.Id];
@@ -66,12 +73,19 @@ private class AlertServiceTest {
             Store__c = store.Id,
             Department__c = dept.Id,
             Date__c = Date.today(),
-            Loss_Rate__c = 25.0  // 閾値20%を超える
+            Loss_Rate__c = 25.0
         );
         insert pl;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Department_PL__c>{pl});
+        List<Weekly_Department_PL__c> plList = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plList);
+        update plList;
         Test.stopTest();
 
         pl = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Department_PL__c WHERE Id = :pl.Id];
@@ -88,12 +102,19 @@ private class AlertServiceTest {
             Store__c = store.Id,
             Department__c = dept.Id,
             Date__c = Date.today(),
-            Gross_Profit_Margin__c = 15.0  // 閾値20%を下回る
+            Gross_Profit_Margin__c = 15.0
         );
         insert pl;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Department_PL__c>{pl});
+        List<Weekly_Department_PL__c> plList = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plList);
+        update plList;
         Test.stopTest();
 
         pl = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Department_PL__c WHERE Id = :pl.Id];
@@ -110,12 +131,19 @@ private class AlertServiceTest {
             Store__c = store.Id,
             Department__c = dept.Id,
             Date__c = Date.today(),
-            YoY_Ratio__c = -15.0  // 閾値-10%を下回る
+            YoY_Ratio__c = -15.0
         );
         insert pl;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Department_PL__c>{pl});
+        List<Weekly_Department_PL__c> plList = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plList);
+        update plList;
         Test.stopTest();
 
         pl = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Department_PL__c WHERE Id = :pl.Id];
@@ -139,7 +167,14 @@ private class AlertServiceTest {
         insert pl;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Department_PL__c>{pl});
+        List<Weekly_Department_PL__c> plList = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plList);
+        update plList;
         Test.stopTest();
 
         pl = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Department_PL__c WHERE Id = :pl.Id];
@@ -165,7 +200,14 @@ private class AlertServiceTest {
         insert pl;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Department_PL__c>{pl});
+        List<Weekly_Department_PL__c> plList = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plList);
+        update plList;
         Test.stopTest();
 
         pl = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Department_PL__c WHERE Id = :pl.Id];
@@ -184,13 +226,18 @@ private class AlertServiceTest {
             Product__c = product.Id,
             Department__c = dept.Id,
             Date__c = Date.today(),
-            Loss_Rate__c = 25.0,  // 閾値20%を超える
-            YoY_Ratio__c = -15.0  // 閾値-10%を下回る
+            Loss_Rate__c = 25.0,
+            YoY_Ratio__c = -15.0
         );
         insert sales;
 
         Test.startTest();
-        AlertService.checkAlerts(new List<Weekly_Product_Sales__c>{sales});
+        List<Weekly_Product_Sales__c> salesList = [
+            SELECT Id, Department__c, Loss_Rate__c, YoY_Ratio__c, Has_Alert__c, Alert_Type__c
+            FROM Weekly_Product_Sales__c
+        ];
+        AlertService.checkAlerts(salesList);
+        update salesList;
         Test.stopTest();
 
         sales = [SELECT Has_Alert__c, Alert_Type__c FROM Weekly_Product_Sales__c WHERE Id = :sales.Id];
@@ -216,7 +263,14 @@ private class AlertServiceTest {
         insert plList;
 
         Test.startTest();
-        AlertService.checkAlerts(plList);
+        List<Weekly_Department_PL__c> plListWithFields = [
+            SELECT Id, Department__c, Waste_Rate__c, Loss_Rate__c, Discount_Rate__c,
+                   Gross_Profit_Margin__c, YoY_Ratio__c, Inventory_Days__c,
+                   Has_Alert__c, Alert_Type__c
+            FROM Weekly_Department_PL__c
+        ];
+        AlertService.checkAlerts(plListWithFields);
+        update plListWithFields;
         Test.stopTest();
 
         Integer alertCount = [SELECT COUNT() FROM Weekly_Department_PL__c WHERE Has_Alert__c = true];
